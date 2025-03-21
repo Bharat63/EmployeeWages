@@ -83,14 +83,12 @@ function calcDailyWage(empHrs) {
     return empHrs*WAGE_PER_HOUR;
 }
 let empDailyWageArr = new Array();
-let empDailyWageMap = new Map();
 while(totalEmpHrs<=MAX_HRS_IN_MONTH && totalWorkingDays<NUM_OF_WORKING_DAYS){
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random()*10)%3;
     let empHrs = getWorkingHours(empCheck);
     totalEmpHrs += empHrs;
     empDailyWageArr.push(calcDailyWage(empHrs));
-    empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
 }
 let empWage = calcDailyWage(totalEmpHrs);
 // console.log("UC6 - Total Days: " + totalWorkingDays +" Total Hrs: " + totalEmpHrs + " Emp Wage: " + empWage);
@@ -103,13 +101,10 @@ function sum(dailyWage) {
 }
 empDailyWageArr.forEach(sum);
 console.log("UC7A - Total Days: " + totalWorkingDays +" Total Hrs: " + totalEmpHrs + " Emp Wage: " + empWage);
-console.log(empDailyWageMap);
-
-function totalWages(totalWage, dailyWage){
+ function totalWages(totalWage, dailyWage) {
     return totalWage+dailyWage;
-}
-console.log("UC7A - Emp Wage with reduce: " + empDailyWageArr.reduce(totalWages,0));
-console.log("UC7A - Emp Wage Map totalHrs: " + Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+ }
+ console.log("UC7A - Emp Wage with reduce: " + empDailyWageArr.reduce(totalWages,0));
 
 //  UC7B - Show the day along with daily wage using Array map helper function
 let dailyCntr = 0;
